@@ -227,7 +227,7 @@ void USBHostSerialPort::init(void)
     size_bulk_out = 0;
     bulk_in = NULL;
     bulk_out = NULL;
-    line_coding.baudrate = 9600;
+    line_coding.baudrate = 460800;
     line_coding.data_bits = 8;
     line_coding.parity = None;
     line_coding.stop_bits = 1;
@@ -246,7 +246,7 @@ void USBHostSerialPort::connect(USBHost* _host, USBDeviceConnected * _dev,
     USB_INFO("New Serial device: VID:%04x PID:%04x [dev: %p - intf: %d]", dev->getVid(), dev->getPid(), dev, serial_intf);
     dev->setName("Serial", serial_intf);
     host->registerDriver(dev, serial_intf, this, &USBHostSerialPort::init);
-    baud(9600);
+    baud(460800);
     size_bulk_in = bulk_in->getSize();
     size_bulk_out = bulk_out->getSize();
     bulk_in->attach(this, &USBHostSerialPort::rxHandler);
